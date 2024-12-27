@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    @apply
+     box-border m-0 p-0
+}
+
+.day-bar{
+    @apply
+        flex flex-col justify-end items-center
+}
+
+.bar{
+    @apply
+    peer
+    bg-soft-red w-10 rounded-sm
+    hover:bg-very-soft-red cursor-pointer 
+}
+
+.amount{
+    @apply
+    peer-hover:block 
+     mb-2 py-1 px-1.5 bg-dark-brown text-white text-[0.8rem] rounded-md font-medium hidden
+}
+
+.changeColor{
+    @apply
+    bg-cyan
+}
+
+.showAmount{
+    @apply
+    block
+}
