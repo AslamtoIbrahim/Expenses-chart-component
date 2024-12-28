@@ -27,7 +27,7 @@
 
 .changeColor{
     @apply
-    bg-cyan
+    hover:bg-soft-red 
 }
 
 .showAmount{
