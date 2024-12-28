@@ -9,25 +9,33 @@ fetch('data.json')
     .then(data => {
         let maxAmount = Math.max(...data.map(item => item.amount));
         dayBars.forEach((element, index) => {
-            element.querySelector('.day').textContent = data[index].day;
-            element.querySelector('.amount').textContent = '$' + data[index].amount;
-            element.querySelector('.bar').style.height = data[index].amount * 2 + 'px';
+            const day = element.querySelector('.day');
+            const amount = element.querySelector('.amount');
+            const bar = element.querySelector('.bar');
+
+            day.textContent = data[index].day;
+            amount.textContent = `$${data[index].amount}`;
+            
+            // add animation to the bars
+            bar.style.height = `0px`;
+            
+            setTimeout(() => {
+                bar.style.transition = `height 1s ease-out`;
+                bar.style.height =  `${data[index].amount * 2.5}px`;
+            }, 100);
 
             // show and hide the amount label above
-            showHoverElement(element.querySelector('.bar'), element.querySelector('.amount'));
+            showHoverElement(bar, amount);
 
             if (maxAmount ===  data[index].amount) {
                 // change the biggest amount on the chart into another color
-                element.querySelector('.bar').style.backgroundColor = 'hsl(186, 34%, 60%)';
+                bar.style.backgroundColor = 'hsl(186, 34%, 60%)';
                 // change the hover color on the chart to this biggest bar
-                changeHoverColor(element.querySelector('.bar'));
+                changeHoverColor(bar);
             }
-
-            total += Number(data[index].amount * 2);
+             
         })
 
-
-        totalMonth.textContent = '$' + total;
     })
     .catch(error => console.error('Error: ', error));
 
